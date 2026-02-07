@@ -44,6 +44,19 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Brand colors */
+  --color-dark-900: var(--dark-900);
+  --color-dark-700: var(--dark-700);
+  --color-dark-500: var(--dark-500);
+  --color-dark-400: var(--dark-400);
+  --color-purple-600: var(--purple-600);
+  --color-purple-100: var(--purple-100);
+  --color-green-500: var(--green-500);
+  --color-green-400: var(--green-400);
+  --color-green-300: var(--green-300);
+  --color-red-500: var(--red-500);
+  --color-yellow-500: var(--yellow-500);
 }
 
 :root {
@@ -113,6 +126,22 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* Brand colors */
+  --dark-900: #000510;
+  --dark-700: #0f1316;
+  --dark-500: #1a2027;
+  --dark-400: #1e2833;
+
+  --purple-600: #1b254b;
+  --purple-100: #a3aed0;
+
+  --green-500: #76da44;
+  --green-400: #2ebe7b;
+  --green-300: #99e39e;
+
+  --red-500: #ff685f;
+  --yellow-500: #dabe44;
 }
 
 @layer base {
@@ -121,5 +150,33 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .main-container {
+    @apply py-6 md:py-2 mx-auto px-4 sm:px-6 max-w-360 w-full;
+  }
+
+  header {
+    @apply border-b border-dark-400 h-full;
+
+    .inner {
+      @apply flex justify-between h-full items-center;
+
+      nav {
+        @apply flex items-center h-full;
+
+        .nav-link {
+          @apply px-6 py-5 flex items-center transition-all hover:text-white font-medium h-full text-purple-100 cursor-pointer;
+        }
+        .nav-link.is-home {
+          @apply max-sm:hidden;
+        }
+        .nav-link.is-active {
+          @apply text-white;
+        }
+      }
+    }
   }
 }
