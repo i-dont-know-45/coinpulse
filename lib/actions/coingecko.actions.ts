@@ -33,11 +33,11 @@ export const fetcher = async <T>(
     });
 
     if (!response.ok) {
-      const errorBody: CoinGeckoErrorBody = await response
+      const errorBody: CoinGeckoErrorBody | null = await response
         .json()
-        .catch(() => {});
+        .catch(() => null);
       throw new Error(
-        `API Error: ${response.status}: ${errorBody.error || response.statusText}`,
+        `API Error: ${response.status}: ${errorBody?.error || response.statusText}`,
       );
     }
 
