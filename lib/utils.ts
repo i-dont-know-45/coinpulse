@@ -9,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 export function convertOHLCData(data: OHLCData[]) {
   return data
     .map((d) => ({
-      time: d[0] as Time, // ensure seconds, not ms
+      time:  Math.floor(d[0] / 1000) as Time, // ensure seconds, not ms
       open: d[1],
       high: d[2],
       low: d[3],

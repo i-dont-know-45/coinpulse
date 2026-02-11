@@ -26,7 +26,6 @@ const CandleStickChart = ({
   const chartRef = useRef<IChartApi | null>(null);
   const candleSeriesRef = useRef<ISeriesApi<"Candlestick">>(null);
 
-  const [loading, setLoading] = useState(false);
   const [period, setPeriod] = useState(initialPeriod);
   const [ohlcData, setohlcData] = useState<OHLCData[]>(data ?? []);
   const [isPending, StartTransition] = useTransition();
@@ -55,23 +54,6 @@ const CandleStickChart = ({
   };
 
   useEffect(() => {
-    if (!candleSeriesRef.current) return;
-    const convertedToSeconds = ohlcData.map(
-      (item) =>
-        [
-          Math.floor(item[0] / 1000),
-          item[1],
-          item[2],
-          item[3],
-          item[4],
-        ] as OHLCData,
-    );
-
-    candleSeriesRef.current.setData(convertOHLCData(ohlcData));
-    chartRef.current?.timeScale().fitContent();
-  }, [ohlcData, period]);
-
-  useEffect(() => {
     const container = chartContainerRef.current;
 
     if (!container) return;
@@ -83,18 +65,16 @@ const CandleStickChart = ({
       width: container.clientWidth,
     });
     const series = chart.addSeries(CandlestickSeries, getCandlestickConfig());
-    series.setData(convertOHLCData(ohlcData));
-    chart.timeScale().fitContent();
 
     chartRef.current = chart;
     candleSeriesRef.current = series;
+
     const observer = new ResizeObserver((entries) => {
       if (!entries.length) return;
       chart.applyOptions({ width: entries[0].contentRect.width });
     });
 
     observer.observe(container);
-
     return () => {
       observer.disconnect();
       chart.remove();
@@ -102,6 +82,12 @@ const CandleStickChart = ({
       candleSeriesRef.current = null;
     };
   }, [height]);
+
+  useEffect(() => {
+    if (!candleSeriesRef.current) return;
+    candleSeriesRef.current.setData(convertOHLCData(ohlcData));
+    chartRef.current?.timeScale().fitContent();
+  }, [ohlcData, period]);
 
   return (
     <div id="candlestick-chart">
@@ -118,7 +104,7 @@ const CandleStickChart = ({
                 value === period ? "config-button-active" : "config-button"
               }
               onClick={() => handlePeriodChange(value)}
-              disabled={loading}
+              disabled={isPending}
             >
               {label}
             </button>

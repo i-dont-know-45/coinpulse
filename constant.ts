@@ -39,56 +39,6 @@ export const CHART_COLORS = {
   candleDown: "#EB1C36",
 } as const;
 
-// export const getChartConfig = (
-//   height: number,
-//   timeVisible: boolean = true,
-// ): DeepPartial<ChartOptions> => ({
-//   width: 0,
-//   height,
-//   layout: {
-//     background: { type: ColorType.Solid, color: CHART_COLORS.background },
-//     textColor: CHART_COLORS.text,
-//     fontSize: 12,
-//     fontFamily: 'Inter, Roboto, "Helvetica Neue", Arial',
-//   },
-//   grid: {
-//     vertLines: { visible: false },
-//     horzLines: {
-//       visible: true,
-//       color: CHART_COLORS.grid,
-//       style: 2,
-//     },
-//   },
-//   rightPriceScale: {
-//     borderColor: CHART_COLORS.border,
-//   },
-//   timeScale: {
-//     borderColor: CHART_COLORS.border,
-//     timeVisible,
-//     secondsVisible: false,
-//   },
-//   handleScroll: true,
-//   handleScale: true,
-//   crosshair: {
-//     mode: 1,
-//     vertLine: {
-//       visible: true,
-//       color: CHART_COLORS.crosshairVertical,
-//       width: 1,
-//       style: 0,
-//     },
-//     horzLine: {
-//       visible: true,
-//       color: CHART_COLORS.crosshairHorizontal,
-//       width: 1,
-//       style: 0,
-//     },
-//   },
-//   localization: {
-//     priceFormatter: (price: number) =>
-//       '$' + price.toLocaleString(undefined, { maximumFractionDigits: 2 }),
-//   },
-// });
 
 export const getChartConfig = (
   height: number,
