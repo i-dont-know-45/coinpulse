@@ -1,5 +1,5 @@
 import { fetcher } from "@/lib/actions/coingecko.actions";
-import { formatPrice } from "@/lib/priceFormatter";
+import { formatCurrency } from "@/lib/utils";
 import { TrendingUp, TrendingDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -50,7 +50,7 @@ const TrendingCoins = async () => {
     {
       header: "Price",
       cellClassName: "price-cell",
-      cell: (coin) => formatPrice(coin.item.data.price),
+      cell: (coin) => formatCurrency(coin.item.data.price),
     },
   ];
 
