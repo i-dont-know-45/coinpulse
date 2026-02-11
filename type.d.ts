@@ -1,3 +1,22 @@
+type OHLCData = [number, number, number, number, number];
+
+interface CandleStickChartProps {
+  data?: OHLCData[];
+  children?: React.ReactNode;
+  coinId: string;
+  height?: number;
+  initialPeriod?: Period;
+}
+
+type Period =
+  | "daily"
+  | "weekly"
+  | "monthly"
+  | "3months"
+  | "6months"
+  | "yearly"
+  | "max";
+
 interface TrendingCoin {
   item: {
     id: string;

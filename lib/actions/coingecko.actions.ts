@@ -26,7 +26,7 @@ export const fetcher = async <T>(
 
     const response = await fetch(url, {
       headers: {
-        "x-cg-demo-api-key": API_KEY,
+        "x-cg-pro-api-key": API_KEY,
         "Content-Type": "application/json",
       } as Record<string, string>,
       next: { revalidate },
@@ -43,6 +43,10 @@ export const fetcher = async <T>(
 
     return response.json();
   } catch (error) {
-    throw new Error(`API Error: ${error as string}`);
+    console.error("Fetcher error:", error);
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error(`Unexpected error: ${String(error)}`);
   }
 };
