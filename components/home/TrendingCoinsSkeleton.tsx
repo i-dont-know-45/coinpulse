@@ -12,7 +12,7 @@ const TrendingCoinsSkeleton = () => {
           <div className="h-4 w-20 skeleton" />
         </div>
         {/* Table Rows Skeleton */}
-        {[...Array(5)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <div key={i} className="flex justify-between items-center py-2">
             <div className="flex items-center gap-2">
               <div className="w-9 h-9 rounded-full skeleton" />
