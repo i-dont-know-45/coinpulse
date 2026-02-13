@@ -18,7 +18,7 @@ const Categories = async () => {
       header: "Top Gainers",
       cell: (category) =>
         category.top_3_coins.map((coin, k) => (
-          <Image src={coin} key={k} width={28} height={28} alt={coin} />
+          <Image src={coin} key={k} width={28} height={28} alt="coin_img" />
         )),
       cellClassName: "top-gainers-cell",
     },
@@ -28,7 +28,12 @@ const Categories = async () => {
       cell: (category) => {
         const isTrendingUp = category.market_cap_change_24h > 0;
         return (
-          <div className={cn("change-cell",isTrendingUp ? "text-green-500" : "text-red-500")}>
+          <div
+            className={cn(
+              "change-cell",
+              isTrendingUp ? "text-green-500" : "text-red-500",
+            )}
+          >
             <p className="flex items-center">
               {formatPercentage(category.market_cap_change_24h)}
               {isTrendingUp ? (

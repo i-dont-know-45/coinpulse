@@ -26,7 +26,7 @@ const CoinsPagination = ({
   const lastPage = !hasMorePages || currentPage === totalPages;
   return (
     <Pagination id="coins-pagination">
-      <PaginationContent className="paginatin-content">
+      <PaginationContent className="pagination-content">
         <PaginationItem className="pagination-control prev">
           <PaginationPrevious
             onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
