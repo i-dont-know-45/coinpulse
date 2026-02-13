@@ -159,7 +159,7 @@
   }
 
   .main-container {
-    @apply py-6 md:py-2 mx-auto px-4 sm:px-6 max-w-360 w-full;
+    @apply py-6 md:py-12 mx-auto px-4 sm:px-6 max-w-360 w-full;
   }
 
   header {
@@ -185,10 +185,10 @@
   }
 
   #coin-overview {
-    @apply bg-dark-500 rounded-xl w-full h-full px-2 xl:col-span-2;
+    @apply bg-dark-500 rounded-xl w-full h-full p-2 xl:col-span-2;
 
     .header {
-      @apply flex-1 flex gap-2 md:gap-3 py-2;
+      @apply flex gap-2 md:gap-3 py-2;
 
       .info {
         @apply flex flex-col;
@@ -214,11 +214,55 @@
       @apply bg-dark-500 overflow-hidden;
 
       .name-cell {
-        @apply font-light;
-      }
+        @apply font-medium;
 
-      .price-cell {
+        a {
+          @apply pl-1 md:pl-2 py-1 md:py-2 xl:py-1 flex items-center gap-2 md:gap-3;
+
+          img {
+            @apply rounded-full size-8 md:size-9;
+          }
+
+          p {
+            @apply text-sm md:text-base;
+          }
+        }
       }
+      .price-change {
+        @apply flex gap-1 items-center text-sm font-medium;
+      }
+      .price-cell {
+        @apply font-medium  text-sm;
+      }
+      .change-cell {
+        @apply font-medium py-4 pr-3 md:pr-5;
+      }
+    }
+  }
+
+  #categories {
+    @apply w-full h-full bg-dark-500 py-4 rounded-xl;
+
+    h4 {
+      @apply text-xl md:text-2xl font-semibold px-5;
+    }
+    .category-cell {
+      @apply font-bold;
+    }
+    .top-gainers-cell {
+      @apply flex flex-row gap-1 mr-5;
+    }
+    .market-cap-cell {
+      @apply font-medium;
+    }
+    .volume-cell {
+      @apply font-medium;
+    }
+    .change-header-cell {
+      @apply font-medium;
+    }
+    .change-cell {
+      @apply flex flex-1 gap-1 items-center  text-center font-medium;
     }
   }
 
@@ -227,10 +271,10 @@
   }
 
   #candlestick-chart {
-    @apply p-3 rounded-lg bg-dark-500;
+    @apply p-3 rounded-lg bg-dark-500 h-full w-full flex flex-col gap-4;
 
     .chart-header {
-      @apply flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between mb-4 font-semibold text-[#e6eef8] text-[20px];
+      @apply flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between font-semibold text-[#e6eef8] text-[20px];
     }
 
     .button-group {
@@ -246,10 +290,92 @@
     }
 
     .chart {
-      @apply w-full min-h-50 rounded-lg overflow-hidden;
+      @apply w-full flex-grow rounded-lg relative min-h-0 overflow-hidden;
+    }
+  }
+  #coins-page {
+    @apply py-12 mx-auto px-4 sm:px-6 max-w-360 size-full items-center gap-10 justify-center;
+
+    .content {
+      @apply flex flex-col space-y-5 w-full;
+    }
+
+    h4 {
+      @apply text-2xl;
+    }
+
+    .coins-table {
+      @apply bg-dark-500 rounded-xl overflow-hidden max-h-fit;
+
+      .rank-cell {
+        @apply font-medium text-purple-100 max-w-20!;
+        a {
+          @apply absolute inset-0 z-10;
+        }
+      }
+      .price-cell {
+        @apply font-medium;
+      }
+      .market-cap-cell {
+        @apply font-medium;
+      }
+      .change-cell {
+        @apply font-medium;
+      }
+      .change-value {
+        @apply flex gap-1 items-center font-medium;
+      }
+      .token-cell {
+        @apply font-semibold;
+
+        .token-info {
+          @apply flex items-center gap-3;
+
+          p {
+            @apply max-w-full truncate;
+          }
+        }
+      }
+    }
+  }
+  #coins-pagination {
+    .pagination-content {
+      @apply flex w-full;
+    }
+
+    .pagination-control {
+      @apply bg-dark-400 rounded-sm ;
+
+      &.prev {
+        @apply pr-2;
+      }
+
+      &.next {
+        @apply pl-2;
+      }
+    }
+
+    .control-button {
+      @apply cursor-pointer;
+    }
+
+    .control-disabled {
+      @apply pointer-events-none opacity-50;
+    }
+    .pagination-pages {
+      @apply flex flex-1 justify-center gap-2;
+
+      .page-link {
+        @apply hover:bg-dark-400! rounded-sm text-base cursor-pointer;
+      }
+
+      .page-link-active {
+        @apply bg-green-500! text-dark-900 font-semibold;
+      }
     }
   }
 }
+
 @keyframes pulse {
   50% {
     opacity: 0.5;
@@ -258,4 +384,45 @@
 
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #1e2833;
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #171a34;
+}
+
+/* Table Custom Scrollbar */
+.custom-scrollbar [data-slot="table-container"] {
+  overflow-y: auto;
+}
+
+.custom-scrollbar [data-slot="table-container"]::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.custom-scrollbar [data-slot="table-container"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar [data-slot="table-container"]::-webkit-scrollbar-thumb {
+  background: #1e2833;
+  border-radius: 8px;
+}
+
+.custom-scrollbar [data-slot="table-container"]::-webkit-scrollbar-thumb:hover {
+  background: #171a34;
 }

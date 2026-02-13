@@ -7,9 +7,14 @@ import { usePathname } from "next/navigation";
 const Header = () => {
   return (
     <header>
-      <div className="main-container inner">
+      <div className="main-container inner md:py-2">
         <Link href="/">
-          <Image src="/logo.svg" alt="coin-pulse-logo" width={132} height={40} />
+          <Image
+            src="/logo.svg"
+            alt="coin-pulse-logo"
+            width={132}
+            height={40}
+          />
         </Link>
         <nav>
           <Link

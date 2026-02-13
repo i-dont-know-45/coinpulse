@@ -71,7 +71,10 @@ const CandleStickChart = ({
 
     const observer = new ResizeObserver((entries) => {
       if (!entries.length) return;
-      chart.applyOptions({ width: entries[0].contentRect.width });
+      chart.applyOptions({
+        width: entries[0].contentRect.width,
+        height: entries[0].contentRect.height,
+      });
     });
 
     observer.observe(container);

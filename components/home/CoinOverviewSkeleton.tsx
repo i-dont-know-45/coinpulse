@@ -1,8 +1,6 @@
-import React from "react";
-
 const CoinOverviewSkeleton = () => {
   return (
-    <div id="coin-overview" className="animate-pulse space-y-5">
+    <div id="coin-overview" className="animate-pulse space-y-5 flex flex-col">
       <div className="header">
         <div className="w-14 h-14 rounded-full skeleton" />
         <div className="info gap-2">
