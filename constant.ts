@@ -28,6 +28,10 @@ export const PERIOD_CONFIG: Record<
   max: { days: "max" },
 };
 
+export const LIVE_INTERVAL_BUTTONS: { value: "1s" | "1m"; label: string }[] = [
+  { value: "1s", label: "1s" },
+  { value: "1m", label: "1m" },
+];
 export const CHART_COLORS = {
   background: "#0b1116",
   text: "#8f9fb1",
@@ -38,7 +42,6 @@ export const CHART_COLORS = {
   candleUp: "#158A6E",
   candleDown: "#EB1C36",
 } as const;
-
 
 export const getChartConfig = (
   height: number,
