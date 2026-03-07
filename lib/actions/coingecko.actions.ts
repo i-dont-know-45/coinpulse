@@ -50,3 +50,35 @@ export const fetcher = async <T>(
     throw new Error(`Unexpected error: ${String(error)}`);
   }
 };
+
+export const getPools = async (
+  id: string,
+  network?: string | null,
+  contactAddress?: string | null,
+): Promise<PoolData> => {
+  const fallback: PoolData = {
+    id: "",
+    name: "",
+    address: "",
+    network: "",
+  };
+
+  if (network && contactAddress) {
+    const poolData = await fetcher<{ data: PoolData[] }>(
+      `onchain/networks/${network}/tokens/${contactAddress}/pools`,
+    );
+
+    return poolData.data?.[0] ?? fallback;
+  }
+
+  try {
+    const poolData = await fetcher<{ data: PoolData[] }>(
+      "onchain/search/pools",
+      { query: id },
+    );
+
+    return poolData.data?.[0] ?? fallback;
+  } catch {
+    return fallback;
+  }
+};

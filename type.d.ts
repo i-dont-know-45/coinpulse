@@ -7,10 +7,14 @@ interface NextPageProps {
 
 interface CandleStickChartProps {
   data?: OHLCData[];
-  children?: React.ReactNode;
+  liveOhlcv?: OHLCData | null;
   coinId: string;
   height?: number;
+  children?: React.ReactNode;
+  mode?: "historical" | "live";
   initialPeriod?: Period;
+  liveInterval: "1s" | "1m";
+  setLiveInterval: (interval: "1s" | "1m") => void;
 }
 
 type Period =
@@ -151,4 +155,103 @@ interface Pagination {
   currentPage: number;
   totalPages: number;
   hasMorePages: boolean;
+}
+
+interface UseCoinGeckoWebSocketProps {
+  coinId: string;
+  poolId: string;
+  liveInterval?: "1s" | "1m";
+}
+
+interface ExtendedPriceData {
+  usd: number;
+  coin?: string;
+  price?: number;
+  change24h?: number;
+  marketCap?: number;
+  volume24h?: number;
+  timestamp?: number;
+}
+interface Trade {
+  price?: number;
+  timestamp?: number;
+  type?: string;
+  amount?: number;
+  value?: number;
+}
+
+interface useCoinGeckoWebSocketReturn {
+  price: ExtendedPriceData | null;
+  trades: Trade[];
+  ohlcv: OHLCData | null;
+  isConnected: boolean;
+}
+
+interface PoolData {
+  id: string;
+  address: string;
+  name: string;
+  network: string;
+}
+
+interface LiveDataProps {
+  coinId: string;
+  poolId: string;
+  coin: CoinDetailsData;
+  coinOHLCData?: OHLCData[];
+  children?: React.ReactNode;
+}
+
+interface LiveCoinHeaderProps {
+  name: string;
+  image: string;
+  livePrice?: number;
+  livePriceChangePercentage24h: number;
+  priceChangePercentage30d: number;
+  priceChange24h: number;
+}
+
+interface ConverterProps {
+  symbol: string;
+  icon: string;
+  priceList: Record<string, number>;
+}
+
+interface Tickers {
+  base: string;
+  target: strign;
+  market: {
+    name: string;
+    er;
+    identifier: string;
+  };
+  last: number;
+  timestamp: string;
+  last_traded_at: string;
+  last_fetch_at: string;
+  trade_url: string;
+}
+
+interface ExchangeData {
+  name: string;
+  tickers: Tickers[];
+}
+
+interface GainersAndLosers {
+  id: string;
+  symbol: string;
+  name: string;
+  image: string;
+  usd: number;
+  usd_24h_vol: number;
+  usd_24h_change: number;
+  usd_1h_change: number;
+  usd_7d_change: number;
+  usd_14d_change: number;
+  usd_30d_change: number;
+}
+
+interface TopCell {
+  top_gainers: GainersAndLosers[];
+  top_losers: GainersAndLosers[];
 }

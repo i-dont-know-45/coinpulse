@@ -3,7 +3,7 @@ import Image from "next/image";
 import { formatCurrency } from "@/lib/utils";
 import { fetcher } from "@/lib/actions/coingecko.actions";
 import CoinOverviewSkeleton from "@/components/home/CoinOverviewSkeleton";
-import CandleStickChart from "./CandleStickChart";
+import CandleStickChart from "../CandleStickChart";
 
 const CoinOverview = async () => {
   let coin, coinOHLCData;

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { formatCurrency, formatPercentage } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import CoinsPagination from "@/components/home/CoinsPagination";
+import CoinsPagination from "@/components/CoinsPagination";
 
 const Coins = async ({ searchParams }: NextPageProps) => {
   const { page } = await searchParams;
